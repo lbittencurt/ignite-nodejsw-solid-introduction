@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Users API
+  description: Users API documentation.
+  version: 0.0.1
+paths:
+  /users:
+    post:
+      tags: ["Users"]
+      summary: "Create a new user"
+      description: "Create a new user"
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                email:
+                  type: "string"
+            example:
+              name: "Sample name"
+              email: "sample@mail.com"
+      responses:
+        201: 
+          description: "Created"
+        400: 
+          description: "Bad request"
+    get:
+      tags: ["Users"]
+      summary: "List users"
+      description: "List users"
+      parameters:
+        - in: header
+          name: user_id
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "string"
+                    admin:
+                      type: "boolean"
+                    name:
+                      type: "string"
+                    email:
+                      type: "string"
+                    created_at:
+                      type: "string"
+                    updated_at:
+                      type: "string"
+        404: 
+          description: "Not Found"
+  /users/{user_id}:
+    get:
+      tags: ["Users"]
+      summary: "Find a user by id"
+      description: "Find a user by id"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "string"
+                  admin:
+                    type: "boolean"
+                  name:
+                    type: "string"
+                  email:
+                    type: "string"
+                  created_at:
+                    type: "string"
+                  updated_at:
+                    type: "string"
+        404: 
+          description: "Not Found"
+  /users/{user_id}/admin:
+    patch:
+      tags: ["Users"]
+      summary: "Set user as admin"
+      description: "Set user as admin"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "string"
+                  admin:
+                    type: "boolean"
+                  name:
+                    type: "string"
+                  email:
+                    type: "string"
+                  created_at:
+                    type: "string"
+                  updated_at:
+                    type: "string"
+        404: 
+          description: "Not Found"
